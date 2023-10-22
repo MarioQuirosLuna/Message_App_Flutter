@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:message_app/presentation/widgets/chat/my_message_bubble.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -16,16 +17,12 @@ class ChatScreen extends StatelessWidget {
         ),
         title: const Text('User Name'),
       ),
-      body: const _ChatView(),
+      body: _ChatView(),
     );
   }
 }
 
 class _ChatView extends StatelessWidget {
-  const _ChatView({
-    super.key,
-  });
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,7 +32,7 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
                 child: ListView.builder(itemBuilder: (context, index) {
-                  return Text("Index $index");
+                  return const MyMessageBubble();
                 },)
             ),
             const Text("User Name")
