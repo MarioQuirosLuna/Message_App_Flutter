@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/entities/message.dart';
+
 class YourMessageBubble extends StatelessWidget {
-  const YourMessageBubble({super.key});
+  final Message message;
+  const YourMessageBubble({
+    super.key,
+    required this.message
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +26,16 @@ class YourMessageBubble extends StatelessWidget {
                     bottomRight: Radius.circular(20)
                 )
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text("Lorem ipsum", style: TextStyle(color: Colors.white),),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(
+                message.text,
+                style: const TextStyle(color: Colors.white),
+              ),
             )
         ),
         const SizedBox(height: 5),
-        const _ImageBubble(),
+        _ImageBubble(imgURL: message.imageUrl),
         const SizedBox(height: 10),
       ],
     );
@@ -34,7 +43,10 @@ class YourMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget{
-  const _ImageBubble({super.key});
+  final String? imgURL;
+  const _ImageBubble({
+    required this.imgURL
+  });
 
   @override
   Widget build(BuildContext context){
@@ -48,7 +60,7 @@ class _ImageBubble extends StatelessWidget{
           bottomRight: Radius.circular(20)
       ),
       child: Image.network(
-        'https://picsum.photos/200',
+        imgURL!,
         width: size.width * 0.7,
         height: size.height * 0.3,
         fit: BoxFit.cover,
