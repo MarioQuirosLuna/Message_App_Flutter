@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:message_app/presentation/widgets/chat/my_message_bubble.dart';
+import 'package:message_app/presentation/widgets/chat/your_message_bubble.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -8,7 +9,7 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        centerTitle: false,
         leading: const Padding(
           padding: EdgeInsets.all(4.0),
           child: CircleAvatar(
@@ -32,7 +33,9 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
                 child: ListView.builder(itemBuilder: (context, index) {
-                  return const MyMessageBubble();
+                  return (index % 2 == 0)
+                      ? const YourMessageBubble()
+                      :const MyMessageBubble();
                 },)
             ),
             const Text("User Name")
